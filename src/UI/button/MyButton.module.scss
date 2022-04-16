@@ -1,0 +1,24 @@
+
+.myBtn{
+    display: flex;
+    padding: 7px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background:  rgba(208,230,255,1) ;
+    border: none;
+    border-radius: 40px;
+    box-shadow: 0 3px #999;
+    margin: 5px 0px;
+    
+}
+.myBtn:hover{
+    background:  rgba(208,230,255,1) ;
+    
+}
+.myBtn:active {
+    background:  rgb(154, 188, 226) ;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+  }
