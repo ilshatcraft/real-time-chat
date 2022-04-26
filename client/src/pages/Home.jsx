@@ -1,28 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import MyButton from '../UI/button/MyButton';
 import io from 'socket.io-client';
+import MyInput from '../UI/input/MyInput';
+import {BrowserRouter as Router, Routes,Route,Link,useNavigate} from "react-router-dom";
+
 
 const Home = ({socket,take_room_and_username}) => {
 
   const [username, setUsername]=useState("")
   const [room, setRoom]=useState("")
-
+  let navigate = useNavigate();
 
 const joinRoom=()=>{
  if(username!=="" && room!=""){
    socket.emit("join_room",room)
    take_room_and_username(username,room)
+   navigate('/chat')
  }
 }
     return (
         <div className='homePage'>
       <h3>Connect to chat</h3>
-      <input type="text" placeholder='Nickname' onChange={(e)=>{
+      <MyInput type="text" placeholder='Nickname' onChange={(e)=>{
        setUsername(e.target.value); 
-      }}></input>
-      <input type="text" placeholder='Room ID' onChange={(e)=>{
+      }}></MyInput>
+      <MyInput type="text" placeholder='Room ID' onChange={(e)=>{
        setRoom(e.target.value); 
-      }}></input>
+      }}></MyInput>
       <MyButton onClick={joinRoom}>Join</MyButton>
         </div>
     );

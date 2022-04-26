@@ -1,0 +1,24 @@
+.MyInput{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    
+    
+    
+    /* Primary/Blue */
+    
+    background:  rgba(208,230,255,1) ;
+    border-radius: 40px;
+    
+    /* Inside auto layout */
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 10px 0px;
+    box-shadow: none;
+    
+  
+  border: none;
+}
