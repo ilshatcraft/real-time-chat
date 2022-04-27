@@ -22,8 +22,16 @@ io.on("connection",(socket)=>{
 
     socket.on("join_room",(data)=>{
         socket.join(data)
-        console.log(`user:${socket.id} Joined to the room: ${data}`)
+        console.log(`user:${socket.id} Joined to the room: ${data.room}`)
+        socket.emit("join_roomed",data)
     })
+
+    socket.on("send_message",(data) =>{
+        socket.to(data.room).emit("recieve_message",data)
+        console.log(data)
+    });
+
+   
 
     socket.on("disconnect",()=>{
         console.log("User disconect",socket.id)

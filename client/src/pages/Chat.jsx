@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MyButton from '../UI/button/MyButton';
 import MyInput from '../UI/input/MyInput';
 import {BrowserRouter as Router, Routes,Route,Link} from "react-router-dom";
@@ -9,7 +9,7 @@ const Chat = ({socket, username, room}) => {
 
  const[currentmessage,setCurrentMessage]=useState("");
 
-    const SendMessage=()=>{
+    const SendMessage = async()=>{
         if(currentmessage!==''){
                 const messageData={
                     room:room,
@@ -17,8 +17,15 @@ const Chat = ({socket, username, room}) => {
                     message:currentmessage,
                     time: new Date(Date.now()).getHours()+":" +new Date(Date.now()).getMinutes(),
                 }
+                await socket.emit("send_message",messageData)
         }
     }
+
+    useEffect(()=>{
+        socket.on("recieve_message",(data)=>{
+            console.log(data)
+        })
+    },[socket])
 
     return (
         <div>
