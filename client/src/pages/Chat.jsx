@@ -21,12 +21,17 @@ const Chat = ({socket, username, room}) => {
         }
     }
 
+    // useEffect(()=>{
+    //     socket.on("recieve_message",(data)=>{
+    //         console.log(data)
+    //     })
+    // },[socket])
     useEffect(()=>{
         socket.on("recieve_message",(data)=>{
-            console.log(data)
+            console.log(data)  
         })
+        
     },[socket])
-
     return (
         <div>
             <div className='chat_header'> Chat</div>

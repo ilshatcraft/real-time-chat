@@ -21,14 +21,15 @@ io.on("connection",(socket)=>{
     console.log(`Connected: ${socket.id}`);
 
     socket.on("join_room",(data)=>{
-        socket.join(data)
+        socket.join(data.room)
         console.log(`user:${socket.id} Joined to the room: ${data.room}`)
         socket.emit("join_roomed",data)
     })
 
     socket.on("send_message",(data) =>{
-        socket.to(data.room).emit("recieve_message",data)
         console.log(data)
+        socket.to(data.room).emit("recieve_message",data)
+        
     });
 
    
