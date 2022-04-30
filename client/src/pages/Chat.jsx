@@ -17,15 +17,18 @@ const Chat = ({socket, username, room}) => {
 
 
     const SendMessage = async()=>{
-        if(currentmessage!==''){
+        if((currentmessage!==''&& room!='')){
                 const messageData={
                     room:room,
                     author:username,
                     message:currentmessage,
-                    time: new Date(Date.now()).getHours()+":" +new Date(Date.now()).getMinutes(),
+                    time: new Date(Date.now()).getHours()+":" +((new Date(Date.now()).getMinutes())>9? new Date(Date.now()).getMinutes(): '0'+new Date(Date.now()).getMinutes()),
                 }
                 await socket.emit("send_message",messageData)
                 setMessages((list)=>[...list,messageData])
+                
+                
+                
         }
     }
 
@@ -36,6 +39,7 @@ const Chat = ({socket, username, room}) => {
     // },[socket])
     useEffect(()=>{
         socket.on("recieve_message",(data)=>{
+          
             setMessages((list)=>[...list,data])
         })
         
@@ -46,15 +50,14 @@ const Chat = ({socket, username, room}) => {
             <div className='chat_header'> <h1>chat</h1></div>
 
             <div className='chat_body'> {messages.map((messageContent)=>{
-                return <div> 
-                    <div>
-                        <div><p>{messageContent.message}</p></div>
-                        <div>
-                            <p>{messageContent.author}</p>
-                            <p>{messageContent.time}</p>
+                return <div id={messageContent.author==username?'you':'other'}>
+                        <div className='chat_body_message' >{messageContent.message}</div>
+                        <div className='chat_body_about'>
+                           <div className='chat_body_about_author'>by {messageContent.author}</div> 
+                          <div className='chat_body_about_time'>{messageContent.time}</div>
                         </div>
                     </div>
-                </div>  })}
+                 })}
             </div>
 
             <div className='chat_footer'>

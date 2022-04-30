@@ -11,7 +11,7 @@ const socket= io.connect("http://localhost:3001");
 
  function App() {
   const [username, setUsername]=useState()
-   const [room, setRoom]=useState()
+   const [room, setRoom]=useState('')
   
 //   const take_room_and_username=async({username1,room1})=>{
 //     setUsername(username1)

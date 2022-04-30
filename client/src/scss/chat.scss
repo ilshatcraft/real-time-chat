@@ -23,5 +23,61 @@ text-align: center;
 .chat_footer_Button{
  margin-top: 5px;
  margin-left: auto;
+}
+
+#you{
+  
+.chat_body_message {
+  display: flex;
+  padding: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color:rgba(208,230,255,1) ;
+  width: 110px;
+  border-radius: 4px;
+  text-align: center;
+  word-break:break-all;
+  
+}}
+#you{
+  
+.chat_body_about{
+  display: flex;
+  margin-top: 4px;
+  margin-left: 10px;
+  font-size: small;
+   .chat_body_about_time{
+    margin-left: 10px;
+    
+  }
+}
+}
+
+#other{
+  
+.chat_body_message {
+  
+  display: flex;
+  padding: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color:rgba(208,230,255,1) ;
+  width: 110px;
+  border-radius: 4px;
+  
+  word-break:break-all;
  
+}}
+#other{
+  
+.chat_body_about{
+  
+  display: flex;
+  margin-top: 4px;
+  margin-left: 10px;
+  font-size: small;
+   .chat_body_about_time{
+    margin-left: 10px;
+  }
+}
 }
