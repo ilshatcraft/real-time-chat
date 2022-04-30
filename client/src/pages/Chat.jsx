@@ -9,6 +9,13 @@ const Chat = ({socket, username, room}) => {
 
  const[currentmessage,setCurrentMessage]=useState("");
 
+ const[messages,setMessages]=useState([
+  
+    
+    ])
+
+
+
     const SendMessage = async()=>{
         if(currentmessage!==''){
                 const messageData={
@@ -18,6 +25,7 @@ const Chat = ({socket, username, room}) => {
                     time: new Date(Date.now()).getHours()+":" +new Date(Date.now()).getMinutes(),
                 }
                 await socket.emit("send_message",messageData)
+                setMessages((list)=>[...list,messageData])
         }
     }
 
@@ -28,24 +36,46 @@ const Chat = ({socket, username, room}) => {
     // },[socket])
     useEffect(()=>{
         socket.on("recieve_message",(data)=>{
-            console.log(data)  
+            setMessages((list)=>[...list,data])
         })
         
     },[socket])
     return (
-        <div>
-            <div className='chat_header'> Chat</div>
+        <div className='chat'>
+        <div className='chat_window'> 
+            <div className='chat_header'> <h1>chat</h1></div>
 
-            <div className='chat_body'></div>
+            <div className='chat_body'> {messages.map((messageContent)=>{
+                return <div> 
+                    <div>
+                        <div><p>{messageContent.message}</p></div>
+                        <div>
+                            <p>{messageContent.author}</p>
+                            <p>{messageContent.time}</p>
+                        </div>
+                    </div>
+                </div>  })}
+            </div>
 
             <div className='chat_footer'>
+
+                <div>
+
                 <MyInput 
                 type="text" 
                 placeholder="type here..." 
                 onChange={(e)=>{setCurrentMessage(e.target.value); }}
-                ></MyInput>
-                <MyButton onClick={SendMessage}>&#10148;</MyButton>
+                >   
+                </MyInput>
+
+                </div>
+
+                <div className='chat_footer_Button'>
+                <MyButton  onClick={SendMessage}>&#10148; send  </MyButton>
+                </div>
+
             </div>
+        </div>
         </div>
     );
 };

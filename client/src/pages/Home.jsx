@@ -20,6 +20,7 @@ const joinRoom= async()=>{
 }
     return (
         <div className='homePage'>
+          <div className='homePage_content'>
       <h3>Connect to chat</h3>
       <MyInput type="text" placeholder='Nickname' onChange={(e)=>{
        setUsername(e.target.value); 
@@ -27,7 +28,10 @@ const joinRoom= async()=>{
       <MyInput type="text" placeholder='Room ID' onChange={(e)=>{
        setRoom(e.target.value); 
       }}></MyInput>
+       <div className='homePage_content_button'>
       <MyButton onClick={joinRoom}>Join</MyButton>
+      </div>
+        </div>
         </div>
     );
 };

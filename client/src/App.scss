@@ -1,7 +1,8 @@
 @use './UI/button/MyButton.module.scss';
 @use './UI/input/MyInput.module.scss';
 @use './scss/CreatePost.scss';
-
+@use './scss/chat.scss';
+@use './scss/home.scss';
 * {
     margin: 0;
     padding: 0;   

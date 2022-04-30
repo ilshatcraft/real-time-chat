@@ -1,0 +1,27 @@
+.chat{
+  display: flex;
+  justify-content: center;
+}
+.chat_window{
+  
+}
+.chat_header{
+margin-top: 10%;
+text-align: center;
+}
+.chat_body{
+  overflow: auto; 
+  width: 300px;
+  height: 420px;
+  border-style: groove;
+  border-radius: 6px;
+  border-color: rgba(208,230,255,0.62877030162413);
+}
+.chat_footer{
+  display: flex;
+}
+.chat_footer_Button{
+ margin-top: 5px;
+ margin-left: auto;
+ 
+}
