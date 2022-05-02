@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import MyButton from '../UI/button/MyButton';
 import MyInput from '../UI/input/MyInput';
 import {BrowserRouter as Router, Routes,Route,Link} from "react-router-dom";
-
+import ScrollToBottom from "react-scroll-to-bottom";
 
 
 const Chat = ({socket, username, room}) => {
 
+  
  const[currentmessage,setCurrentMessage]=useState("");
 
  const[messages,setMessages]=useState([
@@ -15,6 +16,10 @@ const Chat = ({socket, username, room}) => {
     ])
 
 
+    const scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+      }
+      
 
     const SendMessage = async()=>{
         if((currentmessage!==''&& room!='')){
@@ -26,6 +31,7 @@ const Chat = ({socket, username, room}) => {
                 }
                 await socket.emit("send_message",messageData)
                 setMessages((list)=>[...list,messageData])
+                setCurrentMessage('')
                 
                 
                 
@@ -37,6 +43,10 @@ const Chat = ({socket, username, room}) => {
     //         console.log(data)
     //     })
     // },[socket])
+  
+      
+  
+      
     useEffect(()=>{
         socket.on("recieve_message",(data)=>{
           
@@ -49,15 +59,18 @@ const Chat = ({socket, username, room}) => {
         <div className='chat_window'> 
             <div className='chat_header'> <h1>chat</h1></div>
 
-            <div className='chat_body'> {messages.map((messageContent)=>{
+            <div >
+                <ScrollToBottom className='chat_body'>
+                 {messages.map((messageContent)=>{
                 return <div id={messageContent.author==username?'you':'other'}>
                         <div className='chat_body_message' >{messageContent.message}</div>
                         <div className='chat_body_about'>
                            <div className='chat_body_about_author'>by {messageContent.author}</div> 
-                          <div className='chat_body_about_time'>{messageContent.time}</div>
+                          <div className='chat_body_about_time'>at {messageContent.time}</div>
                         </div>
                     </div>
                  })}
+                 </ScrollToBottom>
             </div>
 
             <div className='chat_footer'>
@@ -65,9 +78,12 @@ const Chat = ({socket, username, room}) => {
                 <div>
 
                 <MyInput 
+               value={currentmessage}
                 type="text" 
                 placeholder="type here..." 
-                onChange={(e)=>{setCurrentMessage(e.target.value); }}
+                onChange={(e)=>{setCurrentMessage(e.target.value);}}
+             
+                onKeyPress={(event)=>{event.key==="Enter" && SendMessage()}}
                 >   
                 </MyInput>
 
