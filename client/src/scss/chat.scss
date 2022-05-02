@@ -26,13 +26,18 @@ text-align: center;
 }
 
 #you{
+ 
+}
+
+#you{
   
 .chat_body_message {
   display: flex;
   padding: 10px;
   margin-top: 10px;
-  margin-left: 10px;
-  background-color:rgba(208,230,255,1) ;
+  margin-left: auto;
+  margin-right: 10px;
+  background-color:rgb(214, 255, 208) ;
   width: 110px;
   border-radius: 4px;
   text-align: center;
@@ -40,15 +45,17 @@ text-align: center;
   
 }}
 #you{
-  
 .chat_body_about{
   display: flex;
   margin-top: 4px;
-  margin-left: 10px;
   font-size: small;
    .chat_body_about_time{
-    margin-left: 10px;
-    
+    margin-right: 10px;
+  }
+  .chat_body_about_author{
+    margin-left: auto;
+    display: flex;
+    margin-right: 10px;
   }
 }
 }
@@ -61,6 +68,7 @@ text-align: center;
   padding: 10px;
   margin-top: 10px;
   margin-left: 10px;
+ 
   background-color:rgba(208,230,255,1) ;
   width: 110px;
   border-radius: 4px;
@@ -68,6 +76,7 @@ text-align: center;
   word-break:break-all;
  
 }}
+
 #other{
   
 .chat_body_about{
