@@ -16,7 +16,9 @@ const Chat = ({socket, username, room}) => {
     ])
 
 
-  
+    const scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+      }
       
 
     const SendMessage = async()=>{
